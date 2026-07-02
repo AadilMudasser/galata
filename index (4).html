@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galata Men's Salon — Marsa, Dubai</title>
+<meta name="description" content="Galata Men's Salon — a private grooming house in Marsa, Dubai. Precision cuts, traditional shaves, and a ritual built for the modern gentleman.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --matte-black:#0b0b0a;
+    --charcoal:#171614;
+    --graphite:#211f1c;
+    --beige:#c9b79b;
+    --stone:#a79c8a;
+    --off-white:#f1ece2;
+    --gold:#a9855a;
+    --gold-dim:rgba(169,133,90,0.35);
+    --line:rgba(241,236,226,0.12);
+    --serif:'Fraunces', serif;
+    --sans:'Manrope', sans-serif;
+    --ease:cubic-bezier(.16,.8,.24,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--matte-black);
+    color:var(--off-white);
+    font-family:var(--sans);
+    font-weight:300;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold-dim);color:var(--off-white);}
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+  }
+  .eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);display:inline-block;}
+  h1,h2,h3,h4{
+    font-family:var(--serif);
+    font-weight:400;
+    letter-spacing:-0.01em;
+    line-height:1.05;
+  }
+  .container{
+    width:100%;
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 6vw;
+  }
+  section{position:relative;}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 1s var(--ease), transform 1s var(--ease);
+  }
+  .reveal.in{opacity:1;transform:translateY(0);}
+  .reveal-delay-1{transition-delay:.12s;}
+  .reveal-delay-2{transition-delay:.24s;}
+  .reveal-delay-3{transition-delay:.36s;}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal.in{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;width:100%;z-index:900;
+    padding:26px 6vw;
+    display:flex;align-items:center;justify-content:space-between;
+    transition:padding .5s var(--ease), background .5s var(--ease), border-color .5s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    padding:16px 6vw;
+    background:rgba(11,11,10,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex;align-items:center;gap:12px;}
+  .logo svg{width:34px;height:34px;flex-shrink:0;}
+  .logo-text{font-family:var(--serif);font-size:19px;letter-spacing:0.16em;}
+  .logo-text span{display:block;font-family:var(--sans);font-size:8.5px;letter-spacing:0.34em;color:var(--stone);font-weight:400;margin-top:2px;}
+  nav.links{display:flex;gap:44px;font-size:12.5px;letter-spacing:0.08em;text-transform:uppercase;}
+  nav.links a{position:relative;padding-bottom:4px;opacity:.85;transition:opacity .3s;}
+  nav.links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease);}
+  nav.links a:hover{opacity:1;}
+  nav.links a:hover::after{width:100%;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:11.5px;letter-spacing:0.18em;text-transform:uppercase;
+    padding:15px 30px;border:1px solid var(--gold);
+    position:relative;overflow:hidden;
+    transition:color .4s var(--ease);
+  }
+  .btn span{position:relative;z-index:2;}
+  .btn::before{
+    content:'';position:absolute;inset:0;background:var(--gold);
+    transform:translateX(-101%);transition:transform .45s var(--ease);z-index:1;
+  }
+  .btn:hover::before{transform:translateX(0);}
+  .btn:hover{color:var(--matte-black);}
+  .btn.ghost{border-color:var(--line);}
+  .btn.ghost::before{background:var(--off-white);}
+  .btn.ghost:hover{color:var(--matte-black);}
+  .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:950;}
+  .menu-toggle span{width:24px;height:1px;background:var(--off-white);transition:.3s;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    height:100vh;min-height:680px;
+    display:flex;align-items:flex-end;
+    position:relative;
+    background-color:var(--matte-black);
+    background-image:
+      linear-gradient(180deg, rgba(11,11,10,0.55) 0%, rgba(11,11,10,0.35) 40%, rgba(11,11,10,0.92) 100%),
+      url('grey-concrete.png');
+    background-size:cover;
+    background-position:center;
+  }
+  .hero::after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse at 30% 20%, rgba(169,133,90,0.10), transparent 55%);
+    pointer-events:none;
+  }
+  .hero-tear{
+    position:absolute;
+    top:0; right:0;
+    width:38%;
+    height:100%;
+    background-image:url('tear.png');
+    background-size:cover;
+    background-position:left center;
+    mix-blend-mode:screen;
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative;z-index:3;
+    padding:0 6vw 9vw;
+    width:100%;
+    display:flex;flex-direction:column;gap:26px;
+  }
+  .hero-inner .eyebrow{margin-bottom:4px;}
+  .hero h1{
+    font-size:clamp(46px, 8vw, 108px);
+    max-width:16ch;
+    color:var(--off-white);
+  }
+  .hero h1 em{font-style:italic;color:var(--beige);}
+  .hero-sub{
+    max-width:440px;
+    font-size:16px;line-height:1.75;color:var(--stone);
+    font-weight:300;
+  }
+  .hero-actions{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;}
+  .scroll-cue{
+    position:absolute;bottom:36px;right:6vw;z-index:3;
+    display:flex;align-items:center;gap:10px;
+    font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--stone);
+    writing-mode:vertical-rl;
+  }
+  .scroll-cue .line{width:1px;height:52px;background:linear-gradient(var(--stone), transparent);}
+
+  /* ---------- SECTION LABEL PATTERN ---------- */
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:40px;margin-bottom:64px;flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(32px,4.2vw,54px);max-width:14ch;}
+  .section-head p{max-width:340px;font-size:14.5px;line-height:1.8;color:var(--stone);padding-bottom:6px;}
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    padding:150px 0 130px;
+    background-image:
+      linear-gradient(160deg, rgba(11,11,10,0.9) 0%, rgba(11,11,10,0.72) 100%),
+      url('beige-concrete.png');
+    background-size:cover;background-position:center;
+  }
+  .about-grid{
+    display:grid;grid-template-columns:0.85fr 1.15fr;gap:80px;align-items:center;
+  }
+  .about-frame{
+    position:relative;
+    aspect-ratio:4/5;
+    background:
+      linear-gradient(155deg, #2a2621 0%, #171512 60%),
+      repeating-linear-gradient(115deg, rgba(241,236,226,0.05) 0 2px, transparent 2px 6px);
+    border:1px solid var(--line);
+  }
+  .about-frame::before{
+    content:'';position:absolute;inset:18px;border:1px solid var(--gold-dim);
+  }
+  .about-frame .cap{
+    position:absolute;bottom:22px;left:22px;right:22px;
+    font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--beige);
+    display:flex;justify-content:space-between;
+  }
+  .about-text .eyebrow{margin-bottom:22px;}
+  .about-text h2{font-size:clamp(30px,3.6vw,46px);margin-bottom:26px;max-width:12ch;}
+  .about-text p{font-size:15px;line-height:1.95;color:#d8d2c6;max-width:52ch;margin-bottom:18px;font-weight:300;}
+  .about-text p:first-of-type::first-letter{
+    font-family:var(--serif);font-size:58px;float:left;line-height:0.8;padding:8px 10px 0 0;color:var(--gold);
+  }
+  .about-stats{display:flex;gap:48px;margin-top:38px;padding-top:38px;border-top:1px solid var(--line);}
+  .about-stats div strong{display:block;font-family:var(--serif);font-size:32px;color:var(--off-white);}
+  .about-stats div span{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--stone);}
+
+  /* ---------- SERVICES ---------- */
+  .services{padding:140px 0;background:var(--matte-black);}
+  .service-list{border-top:1px solid var(--line);}
+  .service-row{
+    display:grid;grid-template-columns:60px 1fr auto auto;
+    gap:28px;align-items:baseline;
+    padding:30px 0;border-bottom:1px solid var(--line);
+    transition:padding-left .4s var(--ease), background .4s var(--ease);
+  }
+  .service-row:hover{padding-left:14px;background:rgba(241,236,226,0.02);}
+  .service-num{font-family:var(--serif);font-size:13px;color:var(--gold);}
+  .service-name{font-family:var(--serif);font-size:23px;color:var(--off-white);}
+  .service-desc{grid-column:2;font-size:13px;color:var(--stone);max-width:52ch;margin-top:4px;display:none;}
+  .service-price{font-family:var(--serif);font-size:20px;color:var(--beige);white-space:nowrap;}
+  .service-tag{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone);white-space:nowrap;align-self:center;}
+  @media(min-width:720px){.service-desc{display:block;}}
+
+  /* ---------- WHY CHOOSE US ---------- */
+  .why{padding:140px 0;background:var(--charcoal);}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .why-card{background:var(--charcoal);padding:46px 36px;transition:background .4s var(--ease);}
+  .why-card:hover{background:var(--graphite);}
+  .why-card .icon{width:38px;height:38px;margin-bottom:26px;stroke:var(--gold);fill:none;stroke-width:1.1;}
+  .why-card h3{font-size:20px;margin-bottom:12px;color:var(--off-white);font-weight:400;}
+  .why-card p{font-size:13.5px;line-height:1.8;color:var(--stone);}
+
+  /* ---------- GALLERY ---------- */
+  .gallery{padding:140px 0;background:var(--matte-black);}
+  .grid-gallery{
+    display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:120px;gap:14px;
+  }
+  .g-item{
+    position:relative;overflow:hidden;
+    background:linear-gradient(145deg,#221f1b,#141210);
+  }
+  .g-item .tone{position:absolute;inset:0;}
+  .g-item::after{
+    content:'';position:absolute;inset:0;
+    background:repeating-linear-gradient(125deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 7px);
+  }
+  .g-item .label{
+    position:absolute;left:16px;bottom:14px;z-index:2;
+    font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--off-white);
+    opacity:0;transform:translateY(8px);transition:.4s var(--ease);
+  }
+  .g-item:hover .label{opacity:1;transform:translateY(0);}
+  .g-item:hover .tone{transform:scale(1.06);}
+  .g-item .tone{transition:transform .7s var(--ease);}
+  .g1{grid-column:span 2;grid-row:span 3;}
+  .g2{grid-column:span 2;grid-row:span 2;}
+  .g3{grid-column:span 2;grid-row:span 2;}
+  .g4{grid-column:span 2;grid-row:span 2;}
+  .g5{grid-column:span 2;grid-row:span 3;}
+  .g6{grid-column:span 2;grid-row:span 2;}
+  @media(max-width:860px){
+    .grid-gallery{grid-template-columns:repeat(2,1fr);}
+    .g1,.g2,.g3,.g4,.g5,.g6{grid-column:span 1;grid-row:span 2;}
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{
+    padding:150px 0;
+    background-image:linear-gradient(160deg, rgba(11,11,10,0.93), rgba(11,11,10,0.8)), url('beige-concrete.png');
+    background-size:cover;background-position:center;
+    text-align:center;
+  }
+  .t-wrap{max-width:760px;margin:0 auto;position:relative;min-height:220px;}
+  .t-slide{
+    position:absolute;inset:0;opacity:0;transition:opacity .8s var(--ease);
+    display:flex;flex-direction:column;align-items:center;gap:26px;
+  }
+  .t-slide.active{opacity:1;position:relative;}
+  .t-slide q{
+    font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,30px);
+    line-height:1.6;color:var(--off-white);max-width:26ch;
+  }
+  .t-name{font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);}
+  .t-role{font-size:11.5px;color:var(--stone);margin-top:-14px;}
+  .t-dots{display:flex;justify-content:center;gap:10px;margin-top:40px;}
+  .t-dots button{
+    width:7px;height:7px;border-radius:50%;border:1px solid var(--stone);background:transparent;cursor:pointer;padding:0;
+  }
+  .t-dots button.active{background:var(--gold);border-color:var(--gold);}
+
+  /* ---------- CTA TORN ---------- */
+  .cta-torn{
+    position:relative;
+    min-height:70vh;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    background:var(--matte-black);
+    overflow:hidden;
+  }
+  .cta-torn .tear-bg{
+    position:absolute;inset:0;
+    background-image:url('tear.png');
+    background-size:cover;background-position:center;
+    filter:brightness(0.9);
+  }
+  .cta-torn .tear-tint{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(11,11,10,0.55), rgba(11,11,10,0.75));
+  }
+  .cta-inner{position:relative;z-index:2;padding:0 6vw;display:flex;flex-direction:column;align-items:center;gap:30px;}
+  .cta-inner .eyebrow{justify-content:center;}
+  .cta-inner .eyebrow::before{display:none;}
+  .cta-inner h2{font-size:clamp(34px,5.4vw,68px);max-width:16ch;color:var(--off-white);}
+  .cta-inner p{max-width:46ch;color:var(--stone);font-size:15px;line-height:1.8;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{padding:140px 0 0;background:var(--matte-black);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .contact-info, .contact-map{background:var(--matte-black);padding:70px 6vw;}
+  .contact-info h2{font-size:clamp(28px,3.4vw,40px);margin-bottom:34px;max-width:12ch;}
+  .c-row{display:flex;gap:20px;padding:20px 0;border-top:1px solid var(--line);}
+  .c-row:first-of-type{border-top:none;}
+  .c-row .k{font-size:10.5px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);width:110px;flex-shrink:0;padding-top:2px;}
+  .c-row .v{font-size:14.5px;color:#d8d2c6;line-height:1.8;}
+  .contact-map{
+    position:relative;
+    background-image:
+      linear-gradient(160deg, rgba(11,11,10,0.55), rgba(11,11,10,0.86)),
+      url('grey-concrete.png');
+    background-size:cover;background-position:center;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .map-pin{display:flex;flex-direction:column;align-items:center;gap:16px;}
+  .map-pin svg{width:30px;height:30px;stroke:var(--gold);fill:none;stroke-width:1;}
+  .map-pin span{font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--stone);}
+  .map-grid-lines{
+    position:absolute;inset:0;
+    background-image:linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:44px 44px;
+    opacity:.5;
+  }
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--matte-black);padding:60px 6vw 34px;}
+  .footer-top{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:50px;
+    padding-bottom:54px;border-bottom:1px solid var(--line);
+  }
+  .footer-cols{display:flex;gap:80px;flex-wrap:wrap;}
+  .footer-col h4{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);font-family:var(--sans);font-weight:600;margin-bottom:20px;}
+  .footer-col a{display:block;font-size:13.5px;color:var(--stone);margin-bottom:12px;transition:color .3s;}
+  .footer-col a:hover{color:var(--off-white);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:28px;flex-wrap:wrap;gap:18px;}
+  .footer-bottom p{font-size:11.5px;color:var(--stone);}
+  .socials{display:flex;gap:16px;}
+  .socials a{width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.3s;}
+  .socials a:hover{border-color:var(--gold);}
+  .socials svg{width:14px;height:14px;stroke:var(--stone);fill:none;stroke-width:1.3;}
+  .socials a:hover svg{stroke:var(--gold);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:900px){
+    nav.links{display:none;}
+    .menu-toggle{display:flex;}
+    .about-grid{grid-template-columns:1fr;gap:50px;}
+    .why-grid{grid-template-columns:1fr;}
+    .service-row{grid-template-columns:40px 1fr;row-gap:10px;}
+    .service-price,.service-tag{grid-column:2;justify-self:flex-start;}
+  }
+  @media(max-width:900px){
+    header.mobile-open nav.links{
+      display:flex;position:fixed;inset:0;background:var(--matte-black);
+      flex-direction:column;justify-content:center;align-items:center;gap:36px;
+      font-size:20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <a href="#top" class="logo">
+    <svg viewBox="0 0 60 60" fill="none">
+      <circle cx="30" cy="30" r="28" stroke="var(--gold)" stroke-width="1"/>
+      <path d="M18 22c4 0 7 3 7 7s-3 7-7 7" stroke="var(--off-white)" stroke-width="1" stroke-linecap="round"/>
+      <path d="M42 22c-4 0-7 3-7 7s3 7 7 7" stroke="var(--off-white)" stroke-width="1" stroke-linecap="round"/>
+      <line x1="25" y1="29" x2="35" y2="29" stroke="var(--gold)" stroke-width="1"/>
+    </svg>
+    <span class="logo-text">GALATA<span>MEN'S&nbsp;SALON&nbsp;·&nbsp;EST&nbsp;2011</span></span>
+  </a>
+  <nav class="links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#testimonials">Reviews</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#book" class="btn"><span>Book Appointment</span></a>
+  <div class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-tear"></div>
+  <div class="hero-inner">
+    <div class="eyebrow reveal">Marsa, Dubai — Est. 2011</div>
+    <h1 class="reveal reveal-delay-1">A quiet ritual<br>for the <em>modern</em><br>gentleman.</h1>
+    <p class="hero-sub reveal reveal-delay-2">Galata is a private grooming house built on precision, patience and the belief that a great cut is a form of tailoring. No queues, no rush — only craft.</p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="#book" class="btn"><span>Book Appointment</span></a>
+      <a href="#services" class="btn ghost"><span>View Services</span></a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-frame reveal">
+      <div class="cap"><span>Interior Study</span><span>01</span></div>
+    </div>
+    <div class="about-text">
+      <div class="eyebrow reveal">Our Story</div>
+      <h2 class="reveal reveal-delay-1">Craft, kept<br>deliberately small.</h2>
+      <p class="reveal reveal-delay-2">Galata began as a single chair in Istanbul's old quarter, where a barber's reputation travelled by word alone. That same discipline now lives inside a private townhouse in Marsa — low light, slow hands, and nothing on the walls that doesn't earn its place.</p>
+      <p class="reveal reveal-delay-2">Every appointment opens with a short consultation, because no two heads of hair — or beards, or moods — call for the same approach. We work in wool towels, straight razors and silence when it's wanted, conversation when it isn't.</p>
+      <div class="about-stats reveal reveal-delay-3">
+        <div><strong>13</strong><span>Years Refined</span></div>
+        <div><strong>6</strong><span>Master Barbers</span></div>
+        <div><strong>1</strong><span>Chair, at a Time</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="reveal">The Menu</h2>
+      <p class="reveal reveal-delay-1">Priced per session, not per minute. Every service begins with a consultation and closes with a hot towel.</p>
+    </div>
+    <div class="service-list reveal">
+      <div class="service-row">
+        <span class="service-num">01</span>
+        <div><span class="service-name">Signature Haircut</span><div class="service-desc">Consultation, precision cut, wash and style — Galata's foundation service.</div></div>
+        <span class="service-tag">45 min</span>
+        <span class="service-price">AED 220</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">02</span>
+        <div><span class="service-name">Skin Fade</span><div class="service-desc">Razor-sharp fade with seamless blend, finished with texture on top.</div></div>
+        <span class="service-tag">50 min</span>
+        <span class="service-price">AED 250</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">03</span>
+        <div><span class="service-name">Beard Sculpting</span><div class="service-desc">Shape, line and condition — tailored to your face and growth pattern.</div></div>
+        <span class="service-tag">30 min</span>
+        <span class="service-price">AED 150</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">04</span>
+        <div><span class="service-name">Traditional Hot Towel Shave</span><div class="service-desc">Straight-razor shave with pre-shave oil, hot towels and aftercare balm.</div></div>
+        <span class="service-tag">40 min</span>
+        <span class="service-price">AED 190</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">05</span>
+        <div><span class="service-name">Hair Styling</span><div class="service-desc">Wash, blow-dry and finish for an occasion — product included.</div></div>
+        <span class="service-tag">25 min</span>
+        <span class="service-price">AED 120</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">06</span>
+        <div><span class="service-name">Hair Colouring</span><div class="service-desc">Grey blending or full colour using ammonia-light formulas.</div></div>
+        <span class="service-tag">60 min</span>
+        <span class="service-price">from AED 320</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">07</span>
+        <div><span class="service-name">Scalp Treatment</span><div class="service-desc">Deep-cleansing scalp therapy to relieve dryness and buildup.</div></div>
+        <span class="service-tag">35 min</span>
+        <span class="service-price">AED 180</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">08</span>
+        <div><span class="service-name">Hair Spa</span><div class="service-desc">Nourishing mask, scalp massage and steam — a full reset for tired hair.</div></div>
+        <span class="service-tag">45 min</span>
+        <span class="service-price">AED 260</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">09</span>
+        <div><span class="service-name">Keratin Treatment</span><div class="service-desc">Smoothing treatment that tames frizz for up to twelve weeks.</div></div>
+        <span class="service-tag">90 min</span>
+        <span class="service-price">from AED 550</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">10</span>
+        <div><span class="service-name">Facial Grooming</span><div class="service-desc">Deep cleanse, exfoliation and hydrating mask for face and neck.</div></div>
+        <span class="service-tag">40 min</span>
+        <span class="service-price">AED 240</span>
+      </div>
+      <div class="service-row">
+        <span class="service-num">11</span>
+        <div><span class="service-name">VIP Grooming Package</span><div class="service-desc">Haircut, hot towel shave, facial and scalp treatment — the full ritual.</div></div>
+        <span class="service-tag">2.5 hrs</span>
+        <span class="service-price">AED 780</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="reveal">Why Galata</h2>
+      <p class="reveal reveal-delay-1">Six quiet standards behind every appointment, whether it's your first visit or your fiftieth.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="14" r="7"/><path d="M8 34c0-7 5-11 12-11s12 4 12 11"/></svg>
+        <h3>Expert Stylists</h3>
+        <p>Each barber trains for two years under a master before taking their own chair.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <svg class="icon" viewBox="0 0 40 40"><rect x="10" y="8" width="20" height="26" rx="1"/><line x1="15" y1="16" x2="25" y2="16"/><line x1="15" y1="22" x2="25" y2="22"/></svg>
+        <h3>Premium Products</h3>
+        <p>Small-batch oils, balms and clays sourced from independent European ateliers.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <svg class="icon" viewBox="0 0 40 40"><path d="M20 6c8 6 12 11 12 17a12 12 0 0 1-24 0c0-6 4-11 12-17z"/></svg>
+        <h3>Relaxing Environment</h3>
+        <p>Low light, single-chair rooms and no more than three clients at a time.</p>
+      </div>
+      <div class="why-card reveal">
+        <svg class="icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14"/><path d="M20 12v8l6 4"/></svg>
+        <h3>Personalised Consultation</h3>
+        <p>Every visit opens with an unhurried conversation before a blade is touched.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <svg class="icon" viewBox="0 0 40 40"><path d="M20 6l4 8 9 1-6.5 6.5L28 30l-8-4-8 4 1.5-8.5L7 15l9-1z"/></svg>
+        <h3>Hygiene Standards</h3>
+        <p>Hospital-grade sterilisation and single-use blades for every appointment.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <svg class="icon" viewBox="0 0 40 40"><line x1="8" y1="32" x2="32" y2="8"/><circle cx="11" cy="29" r="3"/><circle cx="29" cy="11" r="3"/></svg>
+        <h3>Precision Grooming</h3>
+        <p>Straight razors, fine-toothed combs and a steady, unrushed hand.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="reveal">Inside Galata</h2>
+      <p class="reveal reveal-delay-1">A private study of the room, the tools and the work.</p>
+    </div>
+    <div class="grid-gallery">
+      <div class="g-item g1 reveal"><div class="tone" style="background:linear-gradient(160deg,#2c261d,#0e0c0a)"></div><span class="label">The Chair</span></div>
+      <div class="g-item g2 reveal reveal-delay-1"><div class="tone" style="background:linear-gradient(160deg,#3a2f22,#141210)"></div><span class="label">Skin Fade Study</span></div>
+      <div class="g-item g3 reveal reveal-delay-2"><div class="tone" style="background:linear-gradient(160deg,#242019,#0b0a09)"></div><span class="label">Straight Razor</span></div>
+      <div class="g-item g4 reveal"><div class="tone" style="background:linear-gradient(160deg,#332a1e,#100e0c)"></div><span class="label">Hot Towel Ritual</span></div>
+      <div class="g-item g5 reveal reveal-delay-1"><div class="tone" style="background:linear-gradient(160deg,#29241c,#0d0b09)"></div><span class="label">Product Wall</span></div>
+      <div class="g-item g6 reveal reveal-delay-2"><div class="tone" style="background:linear-gradient(160deg,#3d3222,#151210)"></div><span class="label">Finished Line</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <div class="eyebrow reveal" style="justify-content:center;margin-bottom:40px;"><span style="border:none;"></span>Client Notes</div>
+    <div class="t-wrap">
+      <div class="t-slide active">
+        <q>Galata is the only place I've trusted with a straight razor. Precise, unhurried, and it actually looks like a five-star hotel inside.</q>
+        <div class="t-name">Omar Al Farsi</div>
+        <div class="t-role">Client since 2019</div>
+      </div>
+      <div class="t-slide">
+        <q>I've had my hair cut in four countries. Nothing compares to the consultation and the finish here — worth every dirham.</q>
+        <div class="t-name">James Whitfield</div>
+        <div class="t-role">Client since 2021</div>
+      </div>
+      <div class="t-slide">
+        <q>The VIP package is a genuine reset. I leave feeling like I've had a full day off, not just a haircut.</q>
+        <div class="t-name">Rashid Hamdan</div>
+        <div class="t-role">Client since 2022</div>
+      </div>
+    </div>
+    <div class="t-dots">
+      <button class="active" data-i="0"></button>
+      <button data-i="1"></button>
+      <button data-i="2"></button>
+    </div>
+  </div>
+</section>
+
+<section class="cta-torn" id="book">
+  <div class="tear-bg"></div>
+  <div class="tear-tint"></div>
+  <div class="cta-inner">
+    <div class="eyebrow reveal">Reserve Your Chair</div>
+    <h2 class="reveal reveal-delay-1">Some things<br>shouldn't be rushed.</h2>
+    <p class="reveal reveal-delay-2">Appointments are limited by design. Reserve a chair and step out of the everyday for an hour.</p>
+    <a href="#contact" class="btn reveal reveal-delay-3"><span>Book Appointment</span></a>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h2 class="reveal">Visit the House</h2>
+      <div class="c-row reveal"><span class="k">Address</span><span class="v">Galata Men's Salon<br>Al Marsa Street, Marsa, Dubai, UAE</span></div>
+      <div class="c-row reveal"><span class="k">Phone</span><span class="v">+971 4 XXX XXXX</span></div>
+      <div class="c-row reveal"><span class="k">Email</span><span class="v">info@galatasalon.ae</span></div>
+      <div class="c-row reveal"><span class="k">Hours</span><span class="v">Mon – Sat, 10:00 – 22:00<br>Sunday, 12:00 – 20:00</span></div>
+    </div>
+    <div class="contact-map">
+      <div class="map-grid-lines"></div>
+      <div class="map-pin reveal">
+        <svg viewBox="0 0 30 30"><path d="M15 2c-6 0-10 4.5-10 10.5C5 20 15 28 15 28s10-8 10-15.5C25 6.5 21 2 15 2z"/><circle cx="15" cy="12" r="3.5"/></svg>
+        <span>Marsa, Dubai</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 60 60" fill="none">
+        <circle cx="30" cy="30" r="28" stroke="var(--gold)" stroke-width="1"/>
+        <path d="M18 22c4 0 7 3 7 7s-3 7-7 7" stroke="var(--off-white)" stroke-width="1" stroke-linecap="round"/>
+        <path d="M42 22c-4 0-7 3-7 7s3 7 7 7" stroke="var(--off-white)" stroke-width="1" stroke-linecap="round"/>
+        <line x1="25" y1="29" x2="35" y2="29" stroke="var(--gold)" stroke-width="1"/>
+      </svg>
+      <span class="logo-text">GALATA<span>MEN'S&nbsp;SALON&nbsp;·&nbsp;EST&nbsp;2011</span></span>
+    </a>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#testimonials">Reviews</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="tel:+9714XXXXXXX">+971 4 XXX XXXX</a>
+        <a href="mailto:info@galatasalon.ae">info@galatasalon.ae</a>
+        <a href="#contact">Marsa, Dubai</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Galata Men's Salon. All rights reserved.</p>
+    <div class="socials">
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="var(--stone)"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 8h2V4h-2a5 5 0 0 0-5 5v2H8v4h2v7h4v-7h2.5L17 12h-3v-2a1 1 0 0 1 1-1z"/></svg></a>
+      <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M4 20l1.3-4.6A8 8 0 1 1 8.4 18.7L4 20z"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, {passive:true});
+
+  // mobile menu
+  const menuToggle = document.getElementById('menuToggle');
+  menuToggle.addEventListener('click', () => {
+    header.classList.toggle('mobile-open');
+  });
+  document.querySelectorAll('nav.links a').forEach(a=>{
+    a.addEventListener('click', ()=> header.classList.remove('mobile-open'));
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // testimonial carousel
+  const slides = document.querySelectorAll('.t-slide');
+  const dots = document.querySelectorAll('.t-dots button');
+  let tIndex = 0;
+  function showSlide(i){
+    slides.forEach((s,idx)=>s.classList.toggle('active', idx===i));
+    dots.forEach((d,idx)=>d.classList.toggle('active', idx===i));
+    tIndex = i;
+  }
+  dots.forEach(d=>d.addEventListener('click', ()=>showSlide(parseInt(d.dataset.i))));
+  setInterval(()=>{ showSlide((tIndex+1)%slides.length); }, 6000);
+</script>
+</body>
+</html>
